@@ -1,0 +1,146 @@
+<!-- Tutorial based on: https://thinkster.io/a-better-way-to-learn-angularjs/binding -->
+
+<!DOCTYPE html>
+<html ng-app="tenant-app">
+  <head>
+    <title>Tenant App</title>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript" src="js/app.js"></script>
+  </head>
+  <body>
+    <div ng-controller="TenantController as tc">
+
+
+      <!-- For testing purposes ONLY -->
+      <!-- Trigger the modal with a button -->
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#detailsModal">Open Modal</button>
+
+      <!-- Search functionality -->
+      <div ng-repeat="search in tc.search">
+        <label for="search-start-date">{{search.desc}}</label>
+        <input id="search-start-date" type="date" ng-model="search-start-date">
+      </div>
+
+      <!-- List of tenants -->
+      <!-- Use the date filter (| date:'dd/MM/yyyy @ h:mma')
+      Also use the orderBy filter to order by name -->
+      <!-- Use twitter list-group -->
+
+      <!-- Modal -->
+      <div id="detailsModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+              <section ng-controller="ModalController as modal">
+                <ul class="nav nav-pills">
+                <!-- ng-class sets the name if expression after : is true -->
+                  <li ng-class="{active: modal.isSelected(1)}">
+                    <a href ng-click="modal.selectTab(1)">General</a>
+                  </li>
+                  <li  ng-class="{active: modal.isSelected(2)}">
+                    <a href ng-click="modal.selectTab(2)">Tenant Details</a>
+                  </li>
+                  <li ng-class="{active: modal.isSelected(3)}">
+                    <a href ng-click="modal.selectTab(3)">Other Occupants</a>
+                  </li>
+                  <li ng-class="{active: modal.isSelected(4)}">
+                    <a href ng-click="modal.selectTab(4)">Tenant Rental History</a>
+                  </li>                  
+                  <li ng-class="{active: modal.isSelected(5)}">
+                    <a href ng-click="modal.selectTab(5)">Professional Details</a>
+                  </li>
+                  <li ng-class="{active: modal.isSelected(6)}">
+                    <a href ng-click="modal.selectTab(6)">Financial Details</a>
+                  </li>             
+                  <li ng-class="{active: modal.isSelected(7)}">
+                    <a href ng-click="modal.selectTab(7)">References</a>
+                  </li>                       
+                  <li ng-class="{active: modal.isSelected(8)}">
+                    <a href ng-click="modal.selectTab(8)">Additional Notes</a>
+                  </li>                  
+                </ul>
+                <div class="panel" ng-show="modal.isSelected(1)">
+                <!-- Inspection details -->
+                  <h4>Status</h4>
+                    <div class="input pull-right">
+                    <form role="form">
+                      <div class="form-group">
+                        <label><input type="radio" name="inspectionStatus" value="tbc">Inspection to be confirmed</label>
+                      </div>
+                      <div class="form-group">
+                        <label><input type="radio" name="inspectionStatus" value="confirmed">Inspection confirmed</label>
+                      </div>
+                      <div class="form-group">
+                        <label><input type="radio" name="inspectionStatus" value="inspected">Inspected</label>
+                      </div>
+
+                      <br/>
+
+                      <h4>Planned move-in date</h4>
+                      <div class='input-group date' id='datetimepicker1'>
+                        <input type='text' class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                      </div>
+                      <br/>
+                      <button type="submit" class="btn btn-default pull-right">Save</button>
+                    </form>
+                  </div>
+                </div>
+                <div class="panel" ng-show="tab === 2">
+                  <h4>More goes here</h4>
+                  <p>Nothing yet</p>
+                </div>
+                <div class="panel" ng-show="tab === 3">
+                  <h4>More goes here</h4>
+                  <p>Nothing yet</p>
+                </div>
+                <div class="panel" ng-show="tab === 4">
+                  <h4>More goes here</h4>
+                  <p>Nothing yet</p>
+                </div>
+                <div class="panel" ng-show="tab === 5">
+                  <h4>More goes here</h4>
+                  <p>Nothing yet</p>
+                </div>
+                <div class="panel" ng-show="tab === 6">
+                  <h4>More goes here</h4>
+                  <p>Nothing yet</p>
+                </div>
+                <div class="panel" ng-show="tab === 7">
+                  <h4>More goes here</h4>
+                  <p>Nothing yet</p>
+                </div>
+                <div class="panel" ng-show="tab === 8">
+                  <h4>More goes here</h4>
+                  <p>Nothing yet</p>
+                </div>                                
+              </section>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
