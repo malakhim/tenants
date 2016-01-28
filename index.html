@@ -15,8 +15,8 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-
     <script type="text/javascript" src="js/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
   </head>
   <body>
     <div ng-controller="TenantController as tc">
@@ -33,7 +33,7 @@
       </div>
 
       <!-- List of tenants -->
-      <!-- Use the date filter (| date:'dd/MM/yyyy @ h:mma')
+      <!-- Use the date filter (| date:~'dd/MM/yyyy @ h:mma')
       Also use the orderBy filter to order by name -->
       <!-- Use twitter list-group -->
 
@@ -45,7 +45,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Modal Header</h4>
+              <h4 class="modal-title">NAME AND CONTACT DETAILS GO HERE</h4>
             </div>
             <div class="modal-body">
               <section ng-controller="ModalController as modal">
@@ -79,16 +79,19 @@
                 <div class="panel" ng-show="modal.isSelected(1)">
                 <!-- Inspection details -->
                   <h4>Status</h4>
-                    <div class="input pull-right">
+                  <div class="current-data pull-left">
+                  {{inspectionStatus}}
+
+                  <div class="edit-data pull-right">
                     <form role="form">
                       <div class="form-group">
-                        <label><input type="radio" name="inspectionStatus" value="tbc">Inspection to be confirmed</label>
+                        <label><input type="radio" name="inspectionStatus" value="Inspection to be confirmed" ng-model="inspectionStatus">Inspection to be confirmed</label>
                       </div>
                       <div class="form-group">
-                        <label><input type="radio" name="inspectionStatus" value="confirmed">Inspection confirmed</label>
+                        <label><input type="radio" name="inspectionStatus" value="Inspection confirmed" ng-model="inspectionStatus">Inspection confirmed</label>
                       </div>
                       <div class="form-group">
-                        <label><input type="radio" name="inspectionStatus" value="inspected">Inspected</label>
+                        <label><input type="radio" name="inspectionStatus" value="Inspected" ng-model="inspectionStatus">Inspected</label>
                       </div>
 
                       <br/>
