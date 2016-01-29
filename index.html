@@ -21,11 +21,25 @@
   <body>
     <div ng-controller="TenantController as tc">
 
-
-      <!-- For testing purposes ONLY -->
-      <!-- Trigger the modal with a button -->
-      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#detailsModal">Open Modal</button>
-
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th><strong>Name</strong></th>
+              <th><strong>Date</strong></th>
+              <th><strong>Contact</strong></th>
+              <th><strong>Status</strong></th>
+            </tr>
+          </thead>
+          <tr ng-repeat="tenant in tc.tenants">
+            <td>{{tenant.name}}</td>
+            <td>Unknown</td>
+            <td>Unknown</td>
+            <td>Unknown</td>
+          </tr>
+          <!-- For testing purposes ONLY -->
+          <!-- Trigger the modal with a button -->
+          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#detailsModal">Open Modal</button>
+        </table>
       <!-- Search functionality -->
       <div ng-repeat="search in tc.search">
         <label for="search-start-date">{{search.desc}}</label>
@@ -79,19 +93,19 @@
                 <div class="panel" ng-show="modal.isSelected(1)">
                 <!-- Inspection details -->
                   <h4>Status</h4>
-                  <div class="current-data pull-left">
-                  {{inspectionStatus}}
+                  <div class="current-data pull-left" ng-controller="InspectionController as inspectionCtrl">
+                  {{inspectionCtrl.inspection.status}}
 
                   <div class="edit-data pull-right">
-                    <form role="form">
+                    <form role="form" ng-submit="inspectionCtrl.updateInspect(state)">
                       <div class="form-group">
-                        <label><input type="radio" name="inspectionStatus" value="Inspection to be confirmed" ng-model="inspectionStatus">Inspection to be confirmed</label>
+                        <label><input type="radio" name="inspectionStatus" value="Inspection to be confirmed" ng-model="inspectionCtrl.inspection.status">Inspection to be confirmed</label>
                       </div>
                       <div class="form-group">
-                        <label><input type="radio" name="inspectionStatus" value="Inspection confirmed" ng-model="inspectionStatus">Inspection confirmed</label>
+                        <label><input type="radio" name="inspectionStatus" value="Inspection confirmed" ng-model="inspectionCtrl.inspection.status">Inspection confirmed</label>
                       </div>
                       <div class="form-group">
-                        <label><input type="radio" name="inspectionStatus" value="Inspected" ng-model="inspectionStatus">Inspected</label>
+                        <label><input type="radio" name="inspectionStatus" value="Inspected" ng-model="inspectionCtrl.inspection.status">Inspected</label>
                       </div>
 
                       <br/>
@@ -145,5 +159,6 @@
         </div>
       </div>
     </div>
+  </div>
   </body>
 </html>

@@ -7,6 +7,22 @@
 
   app.controller("TenantController",function(){
     this.searchOptions = searchOptions;
+    this.tenants = [
+      {
+        name: 'Bob Brown'
+      },{
+        name: 'Jennie White'
+      },{
+        name: 'Cassandra Blue'
+      }];
+  });
+
+  app.controller("InspectionController",function(){
+    this.inspection = {};
+
+    this.updateInspect = function(status){
+
+    }
   });
 
   app.controller("ModalController",function(){
@@ -20,4 +36,8 @@
       return this.tab === checkTab;
     };
   });
+
+
+
+
 })();
